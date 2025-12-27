@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pérdida de Peso</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏃‍♂️ Sistema de Pérdida de Peso</h1>
+            <p class="subtitle">Tu compañero para alcanzar tus metas de salud</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+            <button class="tab-btn" data-tab="calculator">Calculadoras</button>
+            <button class="tab-btn" data-tab="food">Alimentación</button>
+            <button class="tab-btn" data-tab="exercise">Ejercicios</button>
+            <button class="tab-btn" data-tab="progress">Progreso</button>
+        </nav>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Perfil Personal</h3>
+                    <div class="form-group">
+                        <label>Nombre:</label>
+                        <input type="text" id="userName" placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Edad:</label>
+                        <input type="number" id="userAge" placeholder="Edad">
+                    </div>
+                    <div class="form-group">
+                        <label>Género:</label>
+                        <select id="userGender">
+                            <option value="male">Masculino</option>
+                            <option value="female">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Altura (cm):</label>
+                        <input type="number" id="userHeight" placeholder="170">
+                    </div>
+                    <button onclick="saveProfile()" class="btn btn-primary">Guardar Perfil</button>
+                </div>
+
+                <div class="card">
+                    <h3>Peso Actual</h3>
+                    <div class="stat-display">
+                        <span class="stat-value" id="currentWeight">--</span>
+                        <span class="stat-unit">kg</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Registrar nuevo peso:</label>
+                        <input type="number" step="0.1" id="newWeight" placeholder="Peso en kg">
+                    </div>
+                    <button onclick="addWeightEntry()" class="btn btn-primary">Registrar</button>
+                </div>
+
+                <div class="card">
+                    <h3>Objetivo</h3>
+                    <div class="form-group">
+                        <label>Peso objetivo (kg):</label>
+                        <input type="number" step="0.1" id="goalWeight" placeholder="Peso objetivo">
+                    </div>
+                    <button onclick="setGoal()" class="btn btn-primary">Establecer Objetivo</button>
+                    <div class="goal-info" id="goalInfo"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Resumen de Hoy</h3>
+                    <div class="summary-item">
+                        <span>Calorías consumidas:</span>
+                        <span id="todayCalories">0</span> kcal
+                    </div>
+                    <div class="summary-item">
+                        <span>Calorías quemadas:</span>
+                        <span id="todayBurned">0</span> kcal
+                    </div>
+                    <div class="summary-item">
+                        <span>Balance:</span>
+                        <span id="todayBalance">0</span> kcal
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculator Tab -->
+        <div id="calculator" class="tab-content">
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Calculadora de IMC</h3>
+                    <div class="form-group">
+                        <label>Peso (kg):</label>
+                        <input type="number" step="0.1" id="bmcWeight" placeholder="70">
+                    </div>
+                    <div class="form-group">
+                        <label>Altura (cm):</label>
+                        <input type="number" id="bmcHeight" placeholder="170">
+                    </div>
+                    <button onclick="calculateBMI()" class="btn btn-primary">Calcular IMC</button>
+                    <div id="bmiResult" class="result-box"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Calorías Diarias Recomendadas</h3>
+                    <div class="form-group">
+                        <label>Peso (kg):</label>
+                        <input type="number" step="0.1" id="calWeight" placeholder="70">
+                    </div>
+                    <div class="form-group">
+                        <label>Altura (cm):</label>
+                        <input type="number" id="calHeight" placeholder="170">
+                    </div>
+                    <div class="form-group">
+                        <label>Edad:</label>
+                        <input type="number" id="calAge" placeholder="30">
+                    </div>
+                    <div class="form-group">
+                        <label>Género:</label>
+                        <select id="calGender">
+                            <option value="male">Masculino</option>
+                            <option value="female">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nivel de actividad:</label>
+                        <select id="activityLevel">
+                            <option value="1.2">Sedentario</option>
+                            <option value="1.375">Ligeramente activo</option>
+                            <option value="1.55">Moderadamente activo</option>
+                            <option value="1.725">Muy activo</option>
+                            <option value="1.9">Extremadamente activo</option>
+                        </select>
+                    </div>
+                    <button onclick="calculateCalories()" class="btn btn-primary">Calcular</button>
+                    <div id="caloriesResult" class="result-box"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Agua Diaria Recomendada</h3>
+                    <div class="form-group">
+                        <label>Peso (kg):</label>
+                        <input type="number" step="0.1" id="waterWeight" placeholder="70">
+                    </div>
+                    <button onclick="calculateWater()" class="btn btn-primary">Calcular</button>
+                    <div id="waterResult" class="result-box"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Food Tab -->
+        <div id="food" class="tab-content">
+            <div class="card">
+                <h3>Registrar Comida</h3>
+                <div class="form-group">
+                    <label>Nombre del alimento:</label>
+                    <input type="text" id="foodName" placeholder="Ej: Manzana">
+                </div>
+                <div class="form-group">
+                    <label>Calorías:</label>
+                    <input type="number" id="foodCalories" placeholder="95">
+                </div>
+                <div class="form-group">
+                    <label>Tipo de comida:</label>
+                    <select id="mealType">
+                        <option value="breakfast">Desayuno</option>
+                        <option value="lunch">Almuerzo</option>
+                        <option value="dinner">Cena</option>
+                        <option value="snack">Snack</option>
+                    </select>
+                </div>
+                <button onclick="addFood()" class="btn btn-primary">Agregar Comida</button>
+            </div>
+
+            <div class="card">
+                <h3>Registro de Hoy</h3>
+                <div id="foodLog"></div>
+            </div>
+
+            <div class="card">
+                <h3>Alimentos Comunes (Referencia)</h3>
+                <div class="food-reference">
+                    <p><strong>Frutas:</strong> Manzana (95 kcal), Plátano (105 kcal), Naranja (62 kcal)</p>
+                    <p><strong>Proteínas:</strong> Pechuga de pollo 100g (165 kcal), Huevo (78 kcal)</p>
+                    <p><strong>Carbohidratos:</strong> Arroz cocido 100g (130 kcal), Pan integral (80 kcal/rebanada)</p>
+                    <p><strong>Vegetales:</strong> Brócoli 100g (34 kcal), Espinaca 100g (23 kcal)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise Tab -->
+        <div id="exercise" class="tab-content">
+            <div class="card">
+                <h3>Registrar Ejercicio</h3>
+                <div class="form-group">
+                    <label>Tipo de ejercicio:</label>
+                    <select id="exerciseType">
+                        <option value="running">Correr</option>
+                        <option value="walking">Caminar</option>
+                        <option value="cycling">Ciclismo</option>
+                        <option value="swimming">Natación</option>
+                        <option value="weights">Pesas</option>
+                        <option value="yoga">Yoga</option>
+                        <option value="other">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Duración (minutos):</label>
+                    <input type="number" id="exerciseDuration" placeholder="30">
+                </div>
+                <div class="form-group">
+                    <label>Calorías quemadas (aproximadas):</label>
+                    <input type="number" id="exerciseCalories" placeholder="200">
+                </div>
+                <button onclick="addExercise()" class="btn btn-primary">Registrar Ejercicio</button>
+            </div>
+
+            <div class="card">
+                <h3>Ejercicios de Hoy</h3>
+                <div id="exerciseLog"></div>
+            </div>
+
+            <div class="card">
+                <h3>Calorías Quemadas por Ejercicio (Referencia)</h3>
+                <div class="exercise-reference">
+                    <p><strong>Correr (30 min):</strong> ~300 kcal</p>
+                    <p><strong>Caminar (30 min):</strong> ~150 kcal</p>
+                    <p><strong>Ciclismo (30 min):</strong> ~250 kcal</p>
+                    <p><strong>Natación (30 min):</strong> ~350 kcal</p>
+                    <p><strong>Pesas (30 min):</strong> ~180 kcal</p>
+                    <p><strong>Yoga (30 min):</strong> ~120 kcal</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Tab -->
+        <div id="progress" class="tab-content">
+            <div class="card">
+                <h3>Historial de Peso</h3>
+                <div id="weightHistory"></div>
+            </div>
+
+            <div class="card">
+                <h3>Estadísticas</h3>
+                <div id="statistics"></div>
+            </div>
+
+            <div class="card">
+                <h3>Consejos para Bajar de Peso</h3>
+                <div class="tips">
+                    <ul>
+                        <li>Bebe al menos 2 litros de agua al día</li>
+                        <li>Come 5 porciones de frutas y verduras diarias</li>
+                        <li>Realiza al menos 30 minutos de ejercicio al día</li>
+                        <li>Duerme entre 7-8 horas cada noche</li>
+                        <li>Evita alimentos procesados y azúcares refinados</li>
+                        <li>Come despacio y mastica bien los alimentos</li>
+                        <li>Planifica tus comidas con anticipación</li>
+                        <li>Mantén un déficit calórico moderado (300-500 kcal/día)</li>
+                        <li>Sé consistente y paciente, los resultados toman tiempo</li>
+                        <li>Celebra tus pequeños logros</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
