@@ -1,0 +1,44 @@
+CÓMO USAR LA APLICACIÓN DE PÉRDIDA DE PESO
+==========================================
+
+OPCIÓN 1: Servidor Web (RECOMENDADO)
+-------------------------------------
+1. Abre la terminal en la carpeta /home/user/Claude
+2. Ejecuta: python3 -m http.server 8000
+3. Abre tu navegador y ve a: http://localhost:8000
+4. Para detener el servidor: Presiona Ctrl+C en la terminal
+
+OPCIÓN 2: Abrir Archivo Directamente
+-------------------------------------
+1. Navega a la carpeta: /home/user/Claude
+2. Haz clic derecho en el archivo "index.html"
+3. Selecciona "Abrir con" → Tu navegador favorito
+4. La aplicación se abrirá directamente
+
+OPCIÓN 3: Desde el Navegador
+-----------------------------
+1. Abre tu navegador
+2. Presiona Ctrl+O (o Cmd+O en Mac)
+3. Navega a: /home/user/Claude/index.html
+4. Haz clic en "Abrir"
+
+URLs DISPONIBLES:
+-----------------
+- Local: http://localhost:8000
+- IP: http://127.0.0.1:8000
+- Desde otra PC (misma red): http://21.0.0.112:8000
+
+PROBLEMAS COMUNES:
+------------------
+- Si el puerto 8000 está ocupado, usa otro puerto:
+  python3 -m http.server 8080
+  Luego accede a: http://localhost:8080
+
+- Si no tienes Python, simplemente abre el archivo index.html
+  directamente haciendo doble clic en él
+
+¡IMPORTANTE!
+------------
+- Todos tus datos se guardan en el navegador
+- No cierres el navegador si quieres mantener tus datos
+- Usa siempre el mismo navegador para ver tu progreso
