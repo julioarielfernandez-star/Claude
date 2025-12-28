@@ -1,309 +1,281 @@
-# Data Processing API
+# 🤖 Equipo de Trabajo de IA - Administración Julio Ariel Fernández
 
-A comprehensive Python API for batch data processing with built-in caching, validation, and security features.
+Sistema de agentes de IA especializados para automatizar y optimizar la administración profesional de consorcios en Argentina.
 
-## Features
+---
 
-- **Batch Processing**: Process multiple data items efficiently with automatic error handling
-- **Intelligent Caching**: Built-in TTL-based caching to avoid reprocessing identical items
-- **Data Validation**: Configurable validation to ensure data integrity
-- **Data Transformation**: Automatic data enrichment with metadata and checksums
-- **Configuration Merging**: Deep merge utility for complex configuration management
-- **Input Sanitization**: Security-focused input sanitization to prevent injection attacks
+## 📋 Descripción del Proyecto
 
-## Installation
+Este proyecto implementa un **equipo multi-agente de IA** que asiste en la administración de consorcios residenciales, cubriendo desde atención al cliente 24/7 hasta gestión financiera, mantenimiento preventivo y cumplimiento legal.
 
-```bash
-# No external dependencies required - uses Python standard library only
-python3 --version  # Requires Python 3.7+
+**Administración Julio Ariel Fernández** administra **18 consorcios** con más de **1,600 unidades funcionales** en CABA y Provincia de Buenos Aires.
+
+---
+
+## 🎯 Objetivos
+
+1. **Automatizar procesos repetitivos** para liberar tiempo del equipo administrativo
+2. **Mejorar la atención al cliente** con respuestas inmediatas 24/7
+3. **Optimizar la gestión de mantenimiento** con inspecciones preventivas
+4. **Aumentar la transparencia** con acceso digital a toda la información
+5. **Reducir morosidad** mediante seguimiento proactivo de pagos
+6. **Facilitar la toma de decisiones** con análisis de datos y reportes automáticos
+
+---
+
+## 🤖 Agentes de IA
+
+### 1. **Agente de Atención al Cliente** 👥
+- Respuestas automáticas a consultas frecuentes
+- Gestión de reclamos 24/7
+- Comunicación multicanal (WhatsApp, Email, Portal)
+- Escalamiento inteligente a administrador humano
+
+### 2. **Agente de Mantenimiento** 🔧
+- Inspección preventiva automatizada
+- Análisis y comparación de presupuestos
+- Seguimiento de trabajos hasta resolución
+- Programación óptima de reparaciones
+
+### 3. **Agente Financiero** 💰
+- Generación automática de liquidaciones
+- Seguimiento de pagos y morosidad
+- Proyecciones y análisis financiero
+- Alertas de vencimientos
+
+### 4. **Agente Legal** ⚖️
+- Consulta de normativas aplicables
+- Preparación de documentación legal
+- Seguimiento de deudores
+- Cumplimiento de reglamentos
+
+### 5. **Agente de Gestión Documental** 📄
+- Digitalización de comprobantes
+- Clasificación automática
+- Búsqueda semántica
+- Gestión de legajos
+
+### 6. **Agente de Análisis** 📊
+- Dashboards en tiempo real
+- Reportes automáticos
+- Análisis de tendencias
+- KPIs de gestión
+
+---
+
+## 🏗️ Arquitectura del Sistema
+
+```
+┌─────────────────────────────────────────────────────┐
+│              INTERFACES DE USUARIO                  │
+│   WhatsApp | Email | Portal Web | App Móvil        │
+└─────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────┐
+│           CAPA DE ORQUESTACIÓN                      │
+│         Workflows & Process Automation              │
+└─────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────┐
+│              AGENTES DE IA                          │
+│  Customer Service | Maintenance | Financial         │
+│  Legal | Documents | Analytics                      │
+└─────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────┐
+│              INTEGRACIONES                          │
+│  Interfast | Banco Roela | WhatsApp API            │
+│  SendGrid | OCR | Vector DB                         │
+└─────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────┐
+│              DATOS & ALMACENAMIENTO                 │
+│  PostgreSQL | S3 | Vector DB | Cache                │
+└─────────────────────────────────────────────────────┘
 ```
 
-## Quick Start
+---
 
-### Basic Data Processing
+## 📁 Estructura del Proyecto
 
-```python
-from api import DataProcessor
-
-# Initialize processor with 5-minute cache
-processor = DataProcessor(cache_ttl=300)
-
-# Prepare your data
-items = [
-    {"id": 1, "type": "user", "data": '{"name": "Alice", "age": 30}'},
-    {"id": 2, "type": "user", "data": '{"name": "Bob", "age": 25}'},
-    {"id": 3, "type": "admin", "data": '{"name": "Charlie", "role": "superadmin"}'}
-]
-
-# Process the batch
-result = processor.process_batch(items, validate=True, transform=True)
-
-print(f"Successfully processed: {result['success']}/{result['total']} items")
-print(f"Errors encountered: {len(result['errors'])}")
-
-# Access processed results
-for item in result['results']:
-    print(f"ID: {item['id']}, Processed at: {item['processed_at']}")
-    print(f"Checksum: {item['checksum']}")
+```
+.
+├── CLAUDE.md                    # Contexto del negocio
+├── README.md                    # Este archivo
+├── api.py                       # API principal (legacy)
+│
+├── agents/                      # Agentes de IA especializados
+│   ├── customer_service/        # Atención al cliente
+│   ├── maintenance/             # Gestión de mantenimiento
+│   ├── financial/               # Gestión financiera
+│   ├── legal/                   # Asesoramiento legal
+│   ├── documents/               # Gestión documental
+│   └── analytics/               # Análisis y reportes
+│
+├── workflows/                   # Flujos de trabajo automatizados
+│   ├── ticket_management/       # Gestión de reclamos
+│   ├── expense_cycle/           # Ciclo de expensas
+│   ├── preventive_maintenance/  # Mantenimiento preventivo
+│   └── assembly_preparation/    # Preparación de asambleas
+│
+├── integrations/                # Integraciones con sistemas externos
+│   ├── payment_systems/         # Interfast, Banco Roela
+│   ├── communication/           # WhatsApp, Email, SMS
+│   └── document_management/     # OCR, Storage, RAG
+│
+├── data/                        # Datos y modelos
+│   ├── models/                  # Modelos de ML entrenados
+│   ├── training/                # Datasets de entrenamiento
+│   └── knowledge_base/          # Base de conocimiento (RAG)
+│
+├── config/                      # Configuración
+│   ├── development/             # Config desarrollo
+│   ├── staging/                 # Config staging
+│   ├── production/              # Config producción
+│   └── secrets/                 # Credenciales (NO commitear)
+│
+├── docs/                        # Documentación
+│   ├── api/                     # Documentación de APIs
+│   ├── user_guides/             # Guías de usuario
+│   └── technical/               # Documentación técnica
+│
+├── tests/                       # Pruebas automatizadas
+├── utils/                       # Utilidades compartidas
+└── scripts/                     # Scripts de deployment y mantenimiento
 ```
 
-### Using the Cache
+---
 
-```python
-# First processing - item will be processed and cached
-processor.process_batch([item])
+## 🚀 Casos de Uso Principales
 
-# Check if item is in cache
-cached_result = processor.get_cached(item)
-if cached_result:
-    print("Found in cache!")
-else:
-    print("Cache miss")
-
-# View cache statistics
-stats = processor.get_cache_stats()
-print(f"Cache has {stats['valid_entries']} valid entries")
-print(f"Cache efficiency: {stats['valid_entries']}/{stats['total_entries']}")
-
-# Clear cache when needed
-processor.clear_cache()
+### 1. **Gestión Automatizada de Reclamos**
+```
+Propietario → WhatsApp → Agente IA clasifica → Presupuestos →
+Aprobación → Ejecución → Seguimiento → Cierre
 ```
 
-### Configuration Merging
-
-```python
-from api import merge_configs
-
-# Base configuration
-base_config = {
-    "database": {
-        "host": "localhost",
-        "port": 5432,
-        "pool_size": 10
-    },
-    "logging": {
-        "level": "INFO",
-        "file": "app.log"
-    },
-    "debug": True
-}
-
-# Environment-specific overrides
-prod_config = {
-    "database": {
-        "host": "prod.example.com",
-        "pool_size": 50
-    },
-    "debug": False,
-    "monitoring": {
-        "enabled": True
-    }
-}
-
-# Deep merge - nested dicts are merged recursively
-final_config = merge_configs(base_config, prod_config, deep=True)
-
-print(final_config)
-# {
-#     "database": {
-#         "host": "prod.example.com",  # overridden
-#         "port": 5432,                 # preserved from base
-#         "pool_size": 50               # overridden
-#     },
-#     "logging": {
-#         "level": "INFO",
-#         "file": "app.log"
-#     },
-#     "debug": False,                   # overridden
-#     "monitoring": {                   # new key added
-#         "enabled": True
-#     }
-# }
-
-# Shallow merge - nested dicts are replaced entirely
-shallow_config = merge_configs(base_config, prod_config, deep=False)
-# shallow_config["database"] will only have "host" and "pool_size"
+### 2. **Ciclo de Expensas Mensual**
+```
+Recopilación de gastos → Cálculo automático → Generación de
+liquidaciones → Envío multicanal → Seguimiento de pagos →
+Recordatorios → Gestión de morosos
 ```
 
-### Input Sanitization
-
-```python
-from api import sanitize_input
-
-# Sanitize potentially dangerous user input
-user_input = "<script>alert('XSS')</script>"
-safe_input = sanitize_input(user_input)
-print(safe_input)  # Output: "scriptalert(XSS)script"
-
-# Enforce type constraints
-try:
-    sanitize_input([1, 2, 3], allowed_types=[str, int])
-except TypeError as e:
-    print(f"Type validation failed: {e}")
-
-# Limit string length
-long_string = "A" * 1000
-truncated = sanitize_input(long_string, max_length=100)
-print(len(truncated))  # Output: 100
-
-# Recursively sanitize nested structures
-user_data = {
-    "username": "<admin>",
-    "comments": [
-        "Nice product!",
-        "<script>bad code</script>"
-    ],
-    "profile": {
-        "bio": "Hello & welcome"
-    }
-}
-
-sanitized = sanitize_input(user_data)
-print(sanitized)
-# {
-#     "username": "admin",
-#     "comments": ["Nice product!", "scriptbad codescript"],
-#     "profile": {"bio": "Hello  welcome"}
-# }
+### 3. **Mantenimiento Preventivo**
+```
+Calendario automático → Inspecciones → Detección de problemas →
+Presupuestos → Aprobación → Ejecución → Documentación
 ```
 
-## Advanced Usage
-
-### Custom Validation
-
-The DataProcessor validates items for required fields: `id`, `type`, and `data`. You can bypass validation:
-
-```python
-# Skip validation for trusted data sources
-result = processor.process_batch(items, validate=False, transform=True)
+### 4. **Atención 24/7**
+```
+Consulta del propietario → Agente IA responde → Si es complejo →
+Escalamiento a humano → Resolución → Feedback
 ```
 
-### Skip Transformation
+---
 
-Process items without adding metadata:
+## 💼 Información del Negocio
 
-```python
-# Process without transformation (no timestamp, checksum, or JSON parsing)
-result = processor.process_batch(items, validate=True, transform=False)
-```
+**Administración Julio Ariel Fernández**
+- **Registros**: RPA CABA 10921 | RPAC PBA 48 | CAPHAI 3661
+- **CUIT**: 20-28477675-6
+- **Teléfono/WhatsApp**: 011-5263-3707
+- **Oficina**: Mariano Acosta 137, 7° "A", Avellaneda
+- **Web**: www.julioarielfernandez.com.ar
+- **Email**: info@julioarielfernandez.com.ar
 
-### Error Handling
+### Cartera de Clientes
+- **18 consorcios** administrados
+- **1,600+ unidades funcionales**
+- Desde **5 hasta 324 unidades** por consorcio
+- CABA y Provincia de Buenos Aires
 
-```python
-items = [
-    {"id": 1, "type": "user", "data": '{"name": "Alice"}'},
-    {"id": 2},  # Missing required fields
-    {"id": 3, "type": "user", "data": "invalid json{"}
-]
+---
 
-result = processor.process_batch(items)
+## 🛠️ Stack Tecnológico (Propuesto)
 
-# Check for errors
-if result['errors']:
-    print(f"Encountered {len(result['errors'])} errors:")
-    for error in result['errors']:
-        print(f"  Item index {error['index']}: {error['error']}")
-        print(f"  Problematic item: {error['item']}")
-```
+### IA y Machine Learning
+- **LLMs**: Claude 3.5 (Anthropic), GPT-4 (OpenAI)
+- **Frameworks**: LangChain, AutoGen, CrewAI
+- **Vector DB**: Pinecone, Weaviate, ChromaDB
+- **Embeddings**: OpenAI Ada, Cohere
 
-### Cache Management
+### Backend
+- **Lenguaje**: Python 3.11+
+- **Framework**: FastAPI, Flask
+- **Database**: PostgreSQL
+- **Cache**: Redis
+- **Queue**: Celery, RabbitMQ
 
-```python
-# Configure cache TTL (time-to-live)
-short_cache = DataProcessor(cache_ttl=60)     # 1 minute
-medium_cache = DataProcessor(cache_ttl=300)   # 5 minutes (default)
-long_cache = DataProcessor(cache_ttl=3600)    # 1 hour
+### Integraciones
+- **Pagos**: Interfast, Banco Roela
+- **Comunicación**: Twilio (WhatsApp), SendGrid (Email)
+- **Storage**: AWS S3, Google Cloud Storage
+- **OCR**: Google Vision, AWS Textract
 
-# Monitor cache performance
-stats = processor.get_cache_stats()
-if stats['expired_entries'] > 0:
-    print(f"Warning: {stats['expired_entries']} expired entries in cache")
-    processor.clear_cache()  # Clean up expired entries
-```
+### DevOps
+- **Containerización**: Docker
+- **Orquestación**: Kubernetes
+- **CI/CD**: GitHub Actions
+- **Monitoreo**: Datadog, Sentry
+- **Logging**: ELK Stack
 
-## API Reference
+---
 
-### DataProcessor Class
+## 📊 KPIs y Métricas
 
-#### `__init__(cache_ttl=300)`
-Initialize the processor with optional cache TTL in seconds.
+### Eficiencia Operativa
+- ⏱️ Tiempo de respuesta a urgencias < 1 hora
+- 📋 Resolución de reclamos en SLA acordado
+- 🤖 % de consultas resueltas por IA sin escalamiento
+- 💰 Reducción de costos operativos
 
-#### `process_batch(items, validate=True, transform=True)`
-Process a batch of items with optional validation and transformation.
+### Satisfacción del Cliente
+- ⭐ NPS (Net Promoter Score)
+- 😊 Satisfacción en asambleas
+- 📞 Tiempo de espera promedio
+- ✅ Tasa de resolución en primer contacto
 
-**Returns:** Dictionary with keys:
-- `results`: List of successfully processed items
-- `errors`: List of error details for failed items
-- `total`: Total number of items
-- `success`: Number of successfully processed items
+### Gestión Financiera
+- 💳 Tasa de morosidad
+- 📈 Proyección vs. real de gastos
+- ⏰ Tiempo de cobranza promedio
+- 📊 Distribución de pagos por canal
 
-#### `get_cached(item)`
-Retrieve cached result for an item if available and not expired.
+### Mantenimiento
+- 🔧 Cumplimiento de plan preventivo
+- 💵 Ahorro por mantenimiento preventivo vs. correctivo
+- 📅 Tiempo promedio de resolución
+- ✨ Satisfacción con proveedores
 
-**Returns:** Cached item or `None`
+---
 
-#### `clear_cache()`
-Clear all cached items and timestamps.
+## 🔐 Seguridad y Privacidad
 
-#### `get_cache_stats()`
-Get statistics about cache state.
+- ✅ Cumplimiento con Ley de Protección de Datos Personales (Argentina)
+- 🔒 Encriptación end-to-end de comunicaciones
+- 🔑 Autenticación multifactor
+- 📝 Logs de auditoría
+- 🛡️ Acceso basado en roles (RBAC)
+- 💾 Backup automático y seguro
 
-**Returns:** Dictionary with:
-- `total_entries`: Total cached items
-- `valid_entries`: Non-expired items
-- `expired_entries`: Expired items
-- `cache_ttl`: Current TTL setting
+---
 
-### Utility Functions
+## 📝 Licencia
 
-#### `merge_configs(base_config, override_config, deep=True)`
-Merge two configuration dictionaries.
+Proyecto privado - Administración Julio Ariel Fernández
 
-**Parameters:**
-- `base_config`: Base configuration
-- `override_config`: Override configuration
-- `deep`: Enable recursive deep merging (default: True)
+---
 
-**Returns:** Merged configuration dictionary
+## 📞 Contacto
 
-#### `sanitize_input(data, allowed_types=None, max_length=None)`
-Sanitize user input to prevent injection attacks.
+Para consultas sobre este proyecto:
+- **Email**: info@julioarielfernandez.com.ar
+- **WhatsApp**: +54 9 11 5263-3707
+- **Web**: www.julioarielfernandez.com.ar
 
-**Parameters:**
-- `data`: Input data to sanitize
-- `allowed_types`: List of allowed types (optional)
-- `max_length`: Maximum string length (optional)
+---
 
-**Returns:** Sanitized data
-
-**Raises:** `TypeError` if data type not in allowed_types
-
-## Security Considerations
-
-The `sanitize_input` function removes dangerous characters but should be used as part of a defense-in-depth strategy:
-
-- **XSS Prevention**: Removes `< > & " ' /` characters
-- **Not a Complete Solution**: Use additional security measures like:
-  - Parameterized database queries for SQL injection prevention
-  - Content Security Policy headers
-  - HTML entity encoding when rendering
-  - Input validation at application boundaries
-
-## Performance Tips
-
-1. **Batch Size**: Process items in batches of 100-1000 for optimal performance
-2. **Cache TTL**: Set based on data volatility (shorter for frequently changing data)
-3. **Validation**: Disable for trusted data sources to improve throughput
-4. **Transformation**: Skip if you don't need metadata enrichment
-
-## Examples
-
-See the docstrings in `api.py` for additional examples and detailed parameter descriptions.
-
-## License
-
-MIT License - Feel free to use in your projects
-
-## Contributing
-
-Contributions welcome! Please ensure all functions maintain comprehensive documentation.
+**Última actualización:** Diciembre 2025
+**Versión:** 1.0.0
